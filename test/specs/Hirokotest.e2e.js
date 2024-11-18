@@ -12,7 +12,7 @@ describe('login positive stan_sec', () => {
        
 describe('hamburger menu and shopping cart', () => {
     it('should open Hamburger Menu and display all options', async () => {
-        await LoginPage.testHamburgermenu('standard_user', 'secret_sauce');
+        await InventoryPage.testHamburgermenu();
     })
 })
 

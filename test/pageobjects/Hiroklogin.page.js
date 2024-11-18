@@ -19,7 +19,7 @@ class LoginPage extends Page {
     get getError () {
         return $('h3[data-test="error"]');
     }
-    get ShoppingCart (){
+    get shoppingCart (){
         return $('a.shopping_cart_link');
     }
 
@@ -49,7 +49,7 @@ class LoginPage extends Page {
             expect.stringContaining('locked out'))
         }
             else {
-            await expect(this.ShoppingCart).toBeExisting()
+            await expect(this.shoppingCart).toBeExisting()
         }
     }
 }
@@ -62,19 +62,8 @@ class LoginPage extends Page {
                 expect.stringContaining('do not match'))
             }
     }
-
-    //test for hamburger menu and shopping cart
-    async testHamburgermenu(username, password) {
-        await this.open();
-        await this.login(username, password);
-        await expect(this.ShoppingCart).toBeExisting();
-        await InventoryPage.openHamburgerMenu();
-        await expect(InventoryPage.allItemsLink).toBeExisting();
-        await expect(InventoryPage.aboutLink).toBeExisting();
-        await expect(InventoryPage.logoutLink).toBeExisting();
-        await expect(InventoryPage.resetAppStateLink).toBeExisting();
-    }
     
+
     
     open () {
         return super.open();

@@ -1,5 +1,6 @@
 import { $ } from '@wdio/globals'
 import Page from './Hirokopage.js';
+import Login from './Hiroklogin.page.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -100,7 +101,18 @@ class InventoryPage extends Page {
         await this.ShoppingCart.click();
     }
 
+
+
+ //test for hamburger menu and shopping cart
+    async testHamburgermenu(){
+        await Login.login('standard_user', 'secret_sauce');
+        await expect(this.shoppingCart).toBeExisting();
+        await this.openHamburgerMenu();
+        await expect(this.allItemsLink).toBeExisting();
+        await expect(this.aboutLink).toBeExisting();
+        await expect(this.logoutLink).toBeExisting();
+        await expect(this.resetAppStateLink).toBeExisting();
+    }
+
 }
-
-
 export default new InventoryPage();
