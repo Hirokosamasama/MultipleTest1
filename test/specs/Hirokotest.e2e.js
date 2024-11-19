@@ -1,7 +1,7 @@
 import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/Hiroklogin.page.js'
 import InventoryPage from '../pageobjects/Hirokoinventory.page.js'
-//import YourCartPage from '../pageobjects/ShoppingCart.js'
+import YourCartPage from '../pageobjects/ShoppingCart.js'
 
 
 describe('login positive stan_sec', () => {
@@ -31,7 +31,13 @@ describe('hamburger menu and shopping cart', () => {
         await InventoryPage.testLogoutLink('standard_user', 'secret_sauce');
     })
 
+})
 
+describe('test Your Cart Page', () => {
+    it('All items link goes back to inventory page', async () => {
+        await YourCartPage.testclickAllItemsLink('standard_user', 'secret_sauce');
+    })
+    
 })
 
        
