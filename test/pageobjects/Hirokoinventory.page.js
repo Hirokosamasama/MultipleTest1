@@ -117,7 +117,7 @@ class InventoryPage extends Page {
     }
 
     async openShoppingCart() {
-        await this.ShoppingCart.click();
+        await this.shoppingCart.click();
     }
 
     async clickremoveBackpackButton() {
@@ -137,6 +137,53 @@ async testHamburgermenu(){
     await expect(this.logoutLink).toBeExisting();
     await expect(this.resetAppStateLink).toBeExisting();
 }
+
+async testclosebutton(){
+    await this.open()
+    await LoginPage.login('standard_user', 'secret_sauce');
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openHamburgerMenu();
+    await expect(this.closehamburgerMenu).isDisplayed;
+    await this.clickclosehamburgerMenu();
+    await expect(this.closehamburgerMenu).not.isDisplayed;
+}
+async testShoppingCart(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openShoppingCart();
+    await expect(this.YourCart).toBeExisting();
+ }
+
+ async testAllItemsLink(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openHamburgerMenu();
+    await expect(this.allItemsLink).toBeExisting();
+    await this.clickAllItemsLink();
+    await expect(this.shoppingCart).toBeExisting();
+ }
+ async testAboutLink(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openHamburgerMenu();
+    await expect(this.aboutLink).toBeExisting();
+    await this.clickAboutLink();
+    await expect(this.searchIconAfterAbout).toBeExisting();
+ }
+
+ async testLogoutLink(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openHamburgerMenu();
+    await expect(this.logoutLink).toBeExisting();
+    await this.clickLogoutLink();
+    await expect(LoginPage.inputUsername).toBeExisting();
+ }
+
 
 }
 export default new InventoryPage();
