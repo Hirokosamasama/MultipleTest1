@@ -26,7 +26,7 @@ class LoginPage extends Page {
     usernames = ['standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user']
 
     
-    async login (username, password,) {
+    async login (username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();

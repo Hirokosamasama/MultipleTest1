@@ -1,7 +1,7 @@
 import { $ } from '@wdio/globals'
 import Page from './Hirokopage.js';
-import Login from './Hiroklogin.page.js';
-
+import LoginPage from './Hiroklogin.page.js';
+import { browser } from '@wdio/globals';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -20,6 +20,11 @@ class InventoryPage extends Page {
     get hamburgerMenu() {
         return $('#react-burger-menu-btn');
     }
+
+    get closehamburgerMenu(){
+        return $('#react-burger-cross-btn')
+    }
+
 
     // Selector for the 'All Items' link in the Hamburger Menu
     get allItemsLink() {
@@ -53,10 +58,24 @@ class InventoryPage extends Page {
         return $('span[data-test="shopping-cart-badge"]');
     }
 
+    get sortButton(){
+        return $('.product_sort_container');
+    }
+
+    get removeBackpackButton(){
+        return $('#remove-sauce-labs-backpack');
+    }
+
+
     // Function to open the Hamburger Menu
     async openHamburgerMenu() {
         await this.hamburgerMenu.click();
     }
+
+    async clickclosehamburgerMenu() {
+        await this.closehamburgerMenu.click();
+    }
+
 
     // Function to test if 'All Items' link is displayed
     async isAllItemsLinkDisplayed() {
@@ -101,18 +120,23 @@ class InventoryPage extends Page {
         await this.ShoppingCart.click();
     }
 
-
-
- //test for hamburger menu and shopping cart
-    async testHamburgermenu(){
-        await Login.login('standard_user', 'secret_sauce');
-        await expect(this.shoppingCart).toBeExisting();
-        await this.openHamburgerMenu();
-        await expect(this.allItemsLink).toBeExisting();
-        await expect(this.aboutLink).toBeExisting();
-        await expect(this.logoutLink).toBeExisting();
-        await expect(this.resetAppStateLink).toBeExisting();
+    async clickremoveBackpackButton() {
+        await this.removeBackpackButton.click();
     }
+
+
+
+ //test for hamburger menu exist and shopping cart exist, postive test, Functional Test
+async testHamburgermenu(){
+    await this.open()
+    await LoginPage.login('standard_user', 'secret_sauce');
+    await expect(this.shoppingCart).toBeExisting();
+    await this.openHamburgerMenu();
+    await expect(this.allItemsLink).toBeExisting();
+    await expect(this.aboutLink).toBeExisting();
+    await expect(this.logoutLink).toBeExisting();
+    await expect(this.resetAppStateLink).toBeExisting();
+}
 
 }
 export default new InventoryPage();
