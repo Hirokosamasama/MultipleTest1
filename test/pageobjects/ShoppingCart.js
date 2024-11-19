@@ -71,5 +71,42 @@ async testclickAllItemsLink(username, password) { //all items' link test
     await this.clickAllItemsLink();
     await expect (InventoryPage.sortButton).toBeExisting();   
 }
+
+async testContinueShoppingbutton(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(InventoryPage.shoppingCart).toBeExisting();
+    await InventoryPage.clickAddBackpackbutton();
+    await expect(InventoryPage.checkCartContent).toBeExisting();
+    await InventoryPage.openShoppingCart()
+    await this.clickContinueShoppingButton();
+    await expect(InventoryPage.sortButton).toBeExisting();
+    await InventoryPage.clickremoveBackpackButton();
+ }
+
+ async testCheckoutbutton(username, password) {
+    await this.open();
+    await LoginPage.login(username, password);
+    await expect(InventoryPage.shoppingCart).toBeExisting();
+    await InventoryPage.clickAddBackpackbutton();
+    await expect(InventoryPage.checkCartContent).toBeExisting();
+    await InventoryPage.openShoppingCart()
+    await this.clickcheckoutButton();
+    await expect(this.cancelButton).toBeExisting();
+    await this.clickcancelButton();
+    await this.clickremoveBackpackButton();
+ }
+async testRemovebutton(username, password) {
+        await this.open();
+        await LoginPage.login(username, password);
+        await expect(InventoryPage.shoppingCart).toBeExisting();
+        await InventoryPage.clickAddBackpackbutton();
+        await expect(InventoryPage.checkCartContent).toBeExisting();
+        await InventoryPage.openShoppingCart();
+        await expect(this.checkCartContent).toBeExisting();
+        await this.clickremoveBackpackButton();
+        await expect(this.checkCartContent).not.toBeExisting();
+     }
+
 }
 export default new YourCartPage();

@@ -37,7 +37,16 @@ describe('test Your Cart Page', () => {
     it('All items link goes back to inventory page', async () => {
         await YourCartPage.testclickAllItemsLink('standard_user', 'secret_sauce');
     })
-    
+    it('Continue shopping button go back to inventory page', async () => {
+        await YourCartPage.testContinueShoppingbutton('standard_user', 'secret_sauce');
+    })
+    it('Checkout button goes to checkout', async () => {
+        await YourCartPage.testCheckoutbutton('standard_user', 'secret_sauce');
+    })
+    it('Testing remove button to remove item', async () => {
+        await YourCartPage.testRemovebutton('standard_user', 'secret_sauce');
+    })
+
 })
 
        
